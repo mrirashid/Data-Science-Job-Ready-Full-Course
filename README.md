@@ -1,4 +1,4 @@
-# Data Science Job-Ready Full Course
+ #  <center> Data Science Job-Ready Full Course </center>
 
 The journey is to prepare and position participants for **Junior Data Scientist**, **AI Engineer**, and **Machine Learning Engineer** roles. The program focuses on developing strong Python fundamentals, core computer science knowledge, applied machine learning and AI skills, and professional job-readiness through consistent practice, assessments, and real-world project building.
 
