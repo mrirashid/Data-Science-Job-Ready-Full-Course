@@ -1,5 +1,5 @@
-# Day 08: Algorithm Complexity & Performance Optimization
-
+# Day 08: Algorithm Complexity and Performance Optimization
+---
 ## Topics Covered
 
 ### 1. Time Complexity Analysis
@@ -7,6 +7,8 @@
 - **Linear Scan O(N)**: Searching through lists sequentially
 - **Hash Lookup O(1)**: Constant-time lookups using sets and dictionaries
 - **Quadratic Time O(N²)**: Nested loops and inefficient string operations
+
+---
 
 ### 2. Common Performance Patterns
 
@@ -16,6 +18,13 @@
 - Demonstrated O(N) time complexity when checking if a value exists in a list
 - Checked if -5 exists in `numbers_list` using linear search
 
+```python
+numbers_list = list(range(10_000_000))
+print(-5 in numbers_list)  # O(N) - slow
+```
+
+---
+
 #### Hash Lookup (`hash_lookup.py`)
 
 - Created both a list and set of 10 million numbers
@@ -23,11 +32,27 @@
 - Checked if -5 exists in `numbers_set` using hash-based lookup
 - **Key Learning**: Sets provide instant lookups compared to lists
 
+```python
+numbers_set = set(range(10_000_000))
+print(-5 in numbers_set)  # O(1) - instant
+```
+
+---
+
 #### Quadratic Nested Loop (`quadratic_nested_loop.py`)
 
 - Demonstrated O(N²) complexity with nested loops
 - Finding duplicates between two lists using brute force approach
 - **Warning**: This approach is inefficient for large datasets
+
+```python
+for i in list1:
+    for j in list2:
+        if i == j:
+            duplicates.append(i)
+```
+
+---
 
 #### Queue Bottleneck (`queue_bottleneck.py`)
 
@@ -36,16 +61,38 @@
 - Used `queue.popleft()` for O(1) removal from front
 - **Key Learning**: Use deque instead of list for queue operations
 
+```python
+from collections import deque
+queue = deque([1, 2, 3])
+queue.popleft()  # O(1) - efficient
+```
+
+---
+
 #### String Builder (`string_builder.py`)
 
 - Demonstrated O(N²) time complexity when concatenating strings in a loop
 - Created a string by adding 10,000 'a' characters using `+=`
 - **Key Learning**: String concatenation in loops is inefficient; use `join()` instead
 
+```python
+# Inefficient O(N²)
+result = ""
+for i in range(10000):
+    result += "a"
+
+# Efficient O(N)
+result = "".join(["a" for _ in range(10000)])
+```
+
+---
+
 #### Length Trick (`length_trick.py`)
 
 - Attempted to get length of a large number (10 billion)
 - **Note**: This demonstrates a common misconception - `len()` works on sequences, not integers
+
+---
 
 ### 3. Exercises
 
@@ -58,6 +105,18 @@
 - Returns `True` if target found, `False` otherwise
 - Demonstrates the underlying mechanism of linear search
 
+```python
+def linear_search(lst, target):
+    i = 0
+    while i < len(lst):
+        if lst[i] == target:
+            return True
+        i += 1
+    return False
+```
+
+---
+
 #### Exercise 2 (`exercise2.py`)
 
 **Task**: Understand hash lookup mechanics
@@ -69,25 +128,30 @@
   3. Direct jump to memory slot
 - Demonstrates why sets/dicts have O(1) lookup time
 
+```python
+def hash_lookup(value, hash_table):
+    hash_value = hash(value)
+    index = hash_value % len(hash_table)
+    return hash_table[index]  # Direct access
+```
+
+---
+
 ## Key Takeaways
 
 1. **Choose the right data structure**:
-
    - Use sets/dicts for membership testing (O(1))
    - Use lists only when order matters and you don't need frequent lookups
 
 2. **Avoid nested loops** when possible:
-
    - O(N²) complexity grows rapidly with input size
    - Consider using hash-based approaches instead
 
 3. **String operations**:
-
    - Avoid string concatenation in loops
    - Use `list.append()` then `''.join()` for better performance
 
 4. **Queue operations**:
-
    - Use `collections.deque` for efficient queue operations
    - `list.pop(0)` is O(N), while `deque.popleft()` is O(1)
 
@@ -96,14 +160,42 @@
    - O(N): Linear time
    - O(N²): Quadratic time
 
+---
+
+## Complexity Comparison Table
+
+| Operation | Data Structure | Time Complexity |
+|-----------|----------------|-----------------|
+| Membership test | List | O(N) |
+| Membership test | Set/Dict | O(1) |
+| Pop from end | List | O(1) |
+| Pop from front | List | O(N) |
+| Pop from front | Deque | O(1) |
+| String concat in loop | String | O(N²) |
+| Join list of strings | List + join() | O(N) |
+
+---
+
 ## Files Created
 
-- `hash_lookup.py` - Hash-based O(1) lookup demonstration
-- `linear_scan.py` - Linear O(N) search demonstration
-- `quadratic_nested_loop.py` - O(N²) nested loop example
-- `queue_bottleneck.py` - Efficient queue operations with deque
-- `string_builder.py` - String concatenation performance issue
-- `length_trick.py` - Length function exploration
-- `exercise1.py` - Linear search implementation
-- `exercise2.py` - Hash lookup concept implementation
-- `insertion_trap.py` - (Empty file)
+| File | Description |
+|------|-------------|
+| `linear_scan.py` | Linear O(N) search demonstration |
+| `hash_lookup.py` | Hash-based O(1) lookup demonstration |
+| `quadratic_nested_loop.py` | O(N²) nested loop example |
+| `queue_bottleneck.py` | Efficient queue operations with deque |
+| `string_builder.py` | String concatenation performance issue |
+| `length_trick.py` | Length function exploration |
+| `exercise1.py` | Linear search implementation |
+| `exercise2.py` | Hash lookup concept implementation |
+| `insertion_trap.py` | (Empty file) |
+
+---
+
+## Related Concepts
+
+- Big O Notation
+- Data Structures
+- Hash Tables
+- Memory Management
+- Algorithm Optimization
